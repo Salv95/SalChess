@@ -8,6 +8,7 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView first_view;
     ImageView second_view;
 
-//    private int first_piece_num = -1;
-//    private int second_piece_num = -1;
+    ArrayList<ImageView> views_clicked = new ArrayList<ImageView>();
 
     public void gameLogic(View view){
 
@@ -76,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
             second_piece_clicked(tappedView);
         }
 
+        Log.d("image Source", String.valueOf(((ImageView) view).getTag()));
+
+
+
     }
 
     public void first_piece_clicked(ImageView tappedView){
@@ -84,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         first_piece_row = CheckWhatPiece(tappedView).get(1);
         first_piece_col = CheckWhatPiece(tappedView).get(2);
 
-//        first_piece_num = CheckWhatPiece(tappedView).get(3);
 
         if(first_piece == '#'){
             doubleClicked = 0;
@@ -232,8 +235,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void upDateGridAndView(){
 
+
+        //Switch tages between Image Views
+        String temp_tag = (String) first_view.getTag();
+        first_view.setTag(second_view.getTag());
+        second_view.setTag(temp_tag);
+
+
+        //Switch values in array
 
         char [][] new_grid = grid.getGridArr();
 
@@ -247,11 +259,7 @@ public class MainActivity extends AppCompatActivity {
 
         grid.setGridArr(new_grid);
 
-
-
-
-        //now change view
-
+        //switch values in in ImageView
         first_view.setImageResource(android.R.color.transparent);
 
         switch(first_piece){
@@ -276,15 +284,99 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-
+        disableWhites(false);
+        disableWhites(true);
 
 
     }
 
+    public void disableWhites(boolean enabled){
+
+        ArrayList<String> white_tags = new ArrayList<String>();
+
+        white_tags.add("w_pawn");
+        white_tags.add("w_rook");
+        white_tags.add("w_knight");
+        white_tags.add("w_bishop");
+        white_tags.add("w_queen");
+        white_tags.add("w_king");
 
 
+        ArrayList<Integer> viewIds = new ArrayList<Integer>();
+        viewIds.add(R.id.box_0);
+        viewIds.add(R.id.box_1);
+        viewIds.add(R.id.box_2);
+        viewIds.add(R.id.box_3);
+        viewIds.add(R.id.box_4);
+        viewIds.add(R.id.box_5);
+        viewIds.add(R.id.box_6);
+        viewIds.add(R.id.box_7);
+        viewIds.add(R.id.box_8);
+        viewIds.add(R.id.box_9);
+        viewIds.add(R.id.box_10);
+        viewIds.add(R.id.box_11);
+        viewIds.add(R.id.box_12);
+        viewIds.add(R.id.box_13);
+        viewIds.add(R.id.box_14);
+        viewIds.add(R.id.box_15);
+        viewIds.add(R.id.box_16);
+        viewIds.add(R.id.box_17);
+        viewIds.add(R.id.box_18);
+        viewIds.add(R.id.box_19);
+        viewIds.add(R.id.box_20);
+        viewIds.add(R.id.box_21);
+        viewIds.add(R.id.box_22);
+        viewIds.add(R.id.box_23);
+        viewIds.add(R.id.box_24);
+        viewIds.add(R.id.box_25);
+        viewIds.add(R.id.box_26);
+        viewIds.add(R.id.box_27);
+        viewIds.add(R.id.box_28);
+        viewIds.add(R.id.box_29);
+        viewIds.add(R.id.box_30);
+        viewIds.add(R.id.box_31);
+        viewIds.add(R.id.box_32);
+        viewIds.add(R.id.box_33);
+        viewIds.add(R.id.box_34);
+        viewIds.add(R.id.box_35);
+        viewIds.add(R.id.box_36);
+        viewIds.add(R.id.box_37);
+        viewIds.add(R.id.box_38);
+        viewIds.add(R.id.box_39);
+        viewIds.add(R.id.box_40);
+        viewIds.add(R.id.box_41);
+        viewIds.add(R.id.box_42);
+        viewIds.add(R.id.box_43);
+        viewIds.add(R.id.box_44);
+        viewIds.add(R.id.box_45);
+        viewIds.add(R.id.box_46);
+        viewIds.add(R.id.box_47);
+        viewIds.add(R.id.box_48);
+        viewIds.add(R.id.box_49);
+        viewIds.add(R.id.box_50);
+        viewIds.add(R.id.box_51);
+        viewIds.add(R.id.box_52);
+        viewIds.add(R.id.box_53);
+        viewIds.add(R.id.box_54);
+        viewIds.add(R.id.box_55);
+        viewIds.add(R.id.box_56);
+        viewIds.add(R.id.box_57);
+        viewIds.add(R.id.box_58);
+        viewIds.add(R.id.box_59);
+        viewIds.add(R.id.box_60);
+        viewIds.add(R.id.box_61);
+        viewIds.add(R.id.box_62);
+        viewIds.add(R.id.box_63);
 
 
+        for(int i = 0; i < 64; i++){
+
+            ImageView image = (ImageView) findViewById(viewIds.get(i));
+            if(white_tags.contains((String)image.getTag())){
+                image.setEnabled(enabled);
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

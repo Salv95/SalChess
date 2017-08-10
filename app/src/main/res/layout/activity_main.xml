@@ -639,7 +639,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="6"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_pawn" />
+            app:srcCompat="@drawable/w_pawn"
+            android:tag="w_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_49"
@@ -652,7 +654,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="6"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_pawn" />
+            app:srcCompat="@drawable/w_pawn"
+            android:tag="w_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_50"
@@ -665,7 +669,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="6"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_pawn" />
+            app:srcCompat="@drawable/w_pawn"
+            android:tag="w_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_51"
@@ -678,7 +684,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="6"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_pawn" />
+            app:srcCompat="@drawable/w_pawn"
+            android:tag="w_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_52"
@@ -691,7 +699,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="6"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_pawn" />
+            app:srcCompat="@drawable/w_pawn"
+            android:tag="w_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_53"
@@ -704,7 +714,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="6"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_pawn" />
+            app:srcCompat="@drawable/w_pawn"
+            android:tag="w_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_54"
@@ -717,7 +729,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="6"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_pawn" />
+            app:srcCompat="@drawable/w_pawn"
+            android:tag="w_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_55"
@@ -730,7 +744,8 @@
             android:layout_marginStart="3dp"
             android:layout_row="6"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_pawn" />
+            app:srcCompat="@drawable/w_pawn"
+            android:tag="w_pawn"/>
 
         <ImageView
             android:id="@+id/box_56"
@@ -744,7 +759,9 @@
             android:layout_marginTop="2dp"
             android:layout_row="7"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_rook" />
+            app:srcCompat="@drawable/w_rook"
+            android:tag="w_rook"
+            />
 
         <ImageView
             android:id="@+id/box_57"
@@ -758,7 +775,9 @@
             android:layout_marginTop="2dp"
             android:layout_row="7"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_knight" />
+            app:srcCompat="@drawable/w_knight"
+            android:tag="w_knight"
+            />/>
 
         <ImageView
             android:id="@+id/box_58"
@@ -772,7 +791,9 @@
             android:layout_marginTop="2dp"
             android:layout_row="7"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_bishop" />
+            app:srcCompat="@drawable/w_bishop"
+            android:tag="w_bishop"
+            />
 
         <ImageView
             android:id="@+id/box_59"
@@ -786,7 +807,9 @@
             android:layout_marginTop="2dp"
             android:layout_row="7"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_queen" />
+            app:srcCompat="@drawable/w_queen"
+            android:tag="w_queen"
+            />
 
         <ImageView
             android:id="@+id/box_60"
@@ -800,7 +823,9 @@
             android:layout_marginTop="2dp"
             android:layout_row="7"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_king" />
+            app:srcCompat="@drawable/w_king"
+            android:tag="w_king"
+            />
 
         <ImageView
             android:id="@+id/box_61"
@@ -814,7 +839,9 @@
             android:layout_marginTop="2dp"
             android:layout_row="7"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_bishop" />
+            app:srcCompat="@drawable/w_bishop"
+            android:tag="w_bishop"
+            />
 
         <ImageView
             android:id="@+id/box_62"
@@ -828,7 +855,9 @@
             android:layout_marginTop="2dp"
             android:layout_row="7"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_knight" />
+            app:srcCompat="@drawable/w_knight"
+            android:tag="w_knight"
+            />
 
         <ImageView
             android:id="@+id/box_63"
@@ -843,7 +872,9 @@
             android:layout_marginTop="2dp"
             android:layout_row="7"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_rook" />
+            app:srcCompat="@drawable/w_rook"
+            android:tag="w_rook"
+            />
 
 
     </GridLayout>
