@@ -12,6 +12,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -165,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //if valid move the chang the grid and the view
                 if(validMove){
-                    upDateGridAndView();
+                    upDateGridAndViewWhite();
                     validMove = false;
                 }
                 break;
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 validMove = wKnight.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove){
-                    upDateGridAndView();
+                    upDateGridAndViewWhite();
                     validMove = false;
                 }
                 break;
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("pass", String.valueOf(validMove));
                 if(validMove){
-                    upDateGridAndView();
+                    upDateGridAndViewWhite();
                     validMove = false;
                 }
                 break;
@@ -201,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                 validMove3 = wBishopQ.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove2 || validMove3){
-                    upDateGridAndView();
+                    upDateGridAndViewWhite();
                 }
                 break;
             case 'B':
@@ -210,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Bishop", String.valueOf(validMove));
 
                 if(validMove){
-                    upDateGridAndView();
+                    upDateGridAndViewWhite();
                     validMove = false;
                 }
                 break;
@@ -221,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if(validMove){
-                    upDateGridAndView();
+                    upDateGridAndViewWhite();
                     validMove = false;
                 }
                 break;
@@ -235,13 +236,146 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void activateAI(){
 
-    public void upDateGridAndView(){
+        boolean pass = false;
+
+        do{
+            Log.d("Hi", "hi");
+
+            ArrayList<Character> white_pieces = new ArrayList<Character>();
+            white_pieces.add('R');
+            white_pieces.add('H');
+            white_pieces.add('B');
+            white_pieces.add('Q');
+            white_pieces.add('K');
+            white_pieces.add('P');
+
+            ArrayList<Character> black_pieces = new ArrayList<Character>();
+            black_pieces.add('r');
+            black_pieces.add('h');
+            black_pieces.add('b');
+            black_pieces.add('q');
+            black_pieces.add('k');
+            black_pieces.add('p');
+
+            Random rn = new Random();
+            int answer1 = rn.nextInt(64);
+            int answer2 = rn.nextInt(64);
+
+            Log.d("Hi1", "hi1");
+
+            int id1 = getViewID(answer1);
+            int id2 = getViewID(answer2);
+
+            Log.d("id1", String.valueOf(answer1));
+            Log.d("id2", String.valueOf(answer2));
+
+            Log.d("Hi2", "hi2");
+
+
+            ImageView image1 = (ImageView) findViewById(id1);
+            ImageView image2 = (ImageView) findViewById(id2);
+
+            Log.d("Hi3", "hi3");
+
+            ArrayList<Integer> vals1 = grid.numToTwoDIndex(answer1);
+            ArrayList<Integer> vals2 = grid.numToTwoDIndex(answer2);
+            char piece = grid.getItemAtLocation(answer1);
+            char piece2 = grid.getItemAtLocation(answer2);
+
+
+            if((piece == '#' || black_pieces.contains(piece2)) || (white_pieces.contains(piece))){
+                pass = true;
+            }
+            else{
+                Log.d("Hi4", "hi4");
+                upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
+                pass = false;
+            }
+        }while(pass == true);
+
+
+
+
+    }
+
+    public void upDateGridAndViewBlack(char firstPiece, int firstPieceRow, int firstPieceCol,
+                                       int secondPieceRow, int secondPieceCol, ImageView firstView, ImageView secondView){
+
+
+        //Switch tages between Image Views
+
+        secondView.setTag(firstView.getTag());
+        firstView.setTag(null);
+
+
+        //Switch values in array
+
+        char [][] new_grid = grid.getGridArr();
+
+        char first_val = new_grid[firstPieceRow][firstPieceCol];
+
+        Log.d("test1", "test1");
+        new_grid[secondPieceRow][secondPieceCol] = first_val;
+        Log.d("test2", "test2");
+        new_grid[firstPieceRow][firstPieceCol] = '#';
+        Log.d("test3", "test3");
+
+        grid.setGridArr(new_grid);
+        Log.d("test4", "test4");
+        //switch values in in ImageView
+       firstView.setImageResource(android.R.color.transparent);
+
+        Log.d("test5", "test5");
+        switch(firstPiece){
+
+            case 'r':
+                secondView.setImageResource(R.drawable.b_rook);
+                secondView.setEnabled(true);
+                Log.d("test", "b_rook");
+                break;
+            case 'h':
+                secondView.setImageResource(R.drawable.b_knight);
+                secondView.setEnabled(true);
+                Log.d("test", "b_knight");
+                break;
+            case 'b':
+                secondView.setImageResource(R.drawable.b_bishop);
+                secondView.setEnabled(true);
+                Log.d("test", "b_bishop");
+                break;
+            case 'k':
+                secondView.setImageResource(R.drawable.b_king);
+                secondView.setEnabled(true);
+                Log.d("test", "b_king");
+                break;
+            case 'q':
+                secondView.setImageResource(R.drawable.b_queen);
+                secondView.setEnabled(true);
+                Log.d("test", "b_queen");
+                break;
+            case 'p':
+                secondView.setImageResource(R.drawable.b_pawn);
+                secondView.setEnabled(true);
+                Log.d("test", "b_pawn");
+                break;
+            default:
+                Log.d("test6", "test6");
+                break;
+        }
+
+
+
+    }
+
+
+    public void upDateGridAndViewWhite(){
 
 
         //Switch tages between Image Views
         String temp_tag = (String) first_view.getTag();
-        first_view.setTag(second_view.getTag());
+        first_view.setTag(null);
         second_view.setTag(temp_tag);
 
 
@@ -282,12 +416,13 @@ public class MainActivity extends AppCompatActivity {
             case 'P':
                 second_view.setImageResource(R.drawable.w_pawn);
                 break;
+            default:
+                break;
         }
 
         disableWhites(false);
+        activateAI();
         disableWhites(true);
-
-
     }
 
     public void disableWhites(boolean enabled){
@@ -301,6 +436,17 @@ public class MainActivity extends AppCompatActivity {
         white_tags.add("w_queen");
         white_tags.add("w_king");
 
+
+        for(int i = 0; i < 64; i++){
+
+            ImageView image = (ImageView) findViewById(getViewID(i));
+            if(white_tags.contains((String)image.getTag())){
+                image.setEnabled(enabled);
+            }
+        }
+    }
+
+    public int getViewID(int index){
 
         ArrayList<Integer> viewIds = new ArrayList<Integer>();
         viewIds.add(R.id.box_0);
@@ -369,13 +515,8 @@ public class MainActivity extends AppCompatActivity {
         viewIds.add(R.id.box_63);
 
 
-        for(int i = 0; i < 64; i++){
+        return viewIds.get(index);
 
-            ImageView image = (ImageView) findViewById(viewIds.get(i));
-            if(white_tags.contains((String)image.getTag())){
-                image.setEnabled(enabled);
-            }
-        }
     }
 
     @Override

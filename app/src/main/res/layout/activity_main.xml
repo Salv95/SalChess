@@ -27,7 +27,9 @@
             android:clickable="false"
             android:onClick="gameLogic"
             tools:onClick="gameLogic"
-            app:srcCompat="@drawable/b_rook" />
+            app:srcCompat="@drawable/b_rook"
+            android:tag="b_rook"
+            />
 
         <ImageView
             android:id="@+id/box_1"
@@ -40,7 +42,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="0"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_knight" />
+            app:srcCompat="@drawable/b_knight"
+            android:tag="b_knight"
+            />
 
 
         <ImageView
@@ -54,7 +58,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="0"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_bishop" />
+            app:srcCompat="@drawable/b_bishop"
+            android:tag="b_bishop"
+            />
 
         <ImageView
             android:id="@+id/box_3"
@@ -67,7 +73,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="0"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_queen" />
+            app:srcCompat="@drawable/b_queen"
+            android:tag="b_queen"
+            />
 
         <ImageView
             android:id="@+id/box_4"
@@ -80,7 +88,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="0"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_king" />
+            app:srcCompat="@drawable/b_king"
+            android:tag="b_king"
+            />
 
         <ImageView
             android:id="@+id/box_5"
@@ -93,7 +103,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="0"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_bishop" />
+            app:srcCompat="@drawable/b_bishop"
+            android:tag="b_bishop"
+            />
 
         <ImageView
             android:id="@+id/box_6"
@@ -106,7 +118,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="0"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_knight" />
+            app:srcCompat="@drawable/b_knight"
+            android:tag="b_knight"
+            />
 
         <ImageView
             android:id="@+id/box_7"
@@ -119,7 +133,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="0"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_rook" />
+            app:srcCompat="@drawable/b_rook"
+            android:tag="b_rook"
+            />
 
         <ImageView
             android:id="@+id/box_8"
@@ -132,7 +148,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="1"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_pawn" />
+            app:srcCompat="@drawable/b_pawn"
+            android:tag="b_pawn"
+            />
 
 
         <ImageView
@@ -146,7 +164,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="1"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_pawn" />
+            app:srcCompat="@drawable/b_pawn"
+            android:tag="b_pawn"
+            />
 
 
         <ImageView
@@ -160,7 +180,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="1"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_pawn" />
+            app:srcCompat="@drawable/b_pawn"
+            android:tag="b_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_11"
@@ -173,7 +195,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="1"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_pawn" />
+            app:srcCompat="@drawable/b_pawn"
+            android:tag="b_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_12"
@@ -199,7 +223,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="1"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_pawn" />
+            app:srcCompat="@drawable/b_pawn"
+            android:tag="b_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_14"
@@ -212,7 +238,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="1"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_pawn" />
+            app:srcCompat="@drawable/b_pawn"
+            android:tag="b_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_15"
@@ -225,7 +253,9 @@
             android:layout_marginStart="3dp"
             android:layout_row="1"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/b_pawn" />
+            app:srcCompat="@drawable/b_pawn"
+            android:tag="b_pawn"
+            />
 
         <ImageView
             android:id="@+id/box_16"
@@ -872,9 +902,8 @@
             android:layout_marginTop="2dp"
             android:layout_row="7"
             android:onClick="gameLogic"
-            app:srcCompat="@drawable/w_rook"
             android:tag="w_rook"
-            />
+            app:srcCompat="@drawable/w_rook" />
 
 
     </GridLayout>

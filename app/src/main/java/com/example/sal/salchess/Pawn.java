@@ -1,7 +1,5 @@
 package com.example.sal.salchess;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 /**
@@ -26,6 +24,9 @@ public class Pawn extends Piece {
         temp_grid = super.getGrid();
         char [][] arr = temp_grid.getGridArr();
 
+
+        ArrayList<Character> opponents = new ArrayList<Character>();
+
         if(this.getColor() == "White") {
             if (second_piece == 'R') {
                 return false;
@@ -40,15 +41,37 @@ public class Pawn extends Piece {
             } else if (second_piece == 'P') {
                 return false;
             }
+            opponents.add('r');
+            opponents.add('h');
+            opponents.add('b');
+            opponents.add('k');
+            opponents.add('q');
+            opponents.add('p');
+        }
+        else if(this.getColor() == "Black") {
+            if (second_piece == 'R') {
+                return false;
+            } else if (second_piece == 'h') {
+                return false;
+            } else if (second_piece == 'b') {
+                return false;
+            } else if (second_piece == 'k') {
+                return false;
+            } else if (second_piece == 'q') {
+                return false;
+            } else if (second_piece == 'p') {
+                return false;
+            }
+
+            opponents.add('R');
+            opponents.add('H');
+            opponents.add('B');
+            opponents.add('K');
+            opponents.add('Q');
+            opponents.add('P');
+
         }
 
-        ArrayList<Character> blacks = new ArrayList<Character>();
-        blacks.add('r');
-        blacks.add('h');
-        blacks.add('b');
-        blacks.add('k');
-        blacks.add('q');
-        blacks.add('p');
 
         if(first_piece_row == 6){
 
@@ -69,7 +92,7 @@ public class Pawn extends Piece {
         if(one_up){
             if(first_piece_col == second_piece_col){
                 if(((first_piece_row - 1) == second_piece_row)){
-                    if(!blacks.contains(second_piece)){
+                    if(!opponents.contains(second_piece)){
                         return true;
                     }
                 }
@@ -80,7 +103,7 @@ public class Pawn extends Piece {
 
             if((second_piece_col == first_piece_col + 1) && (second_piece_row == first_piece_row - 1)){
 
-                if(blacks.contains(second_piece)){
+                if(opponents.contains(second_piece)){
                     return true;
                 }
 
@@ -91,7 +114,7 @@ public class Pawn extends Piece {
 
             if((second_piece_col == first_piece_col - 1) && (second_piece_row == first_piece_row - 1)){
 
-                if(blacks.contains(second_piece)){
+                if(opponents.contains(second_piece)){
                     return true;
                 }
             }
