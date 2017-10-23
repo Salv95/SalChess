@@ -36,6 +36,21 @@ public class Knight extends Piece{
                 return false;
             }
         }
+        if(this.getColor() == "Black") {
+            if (second_piece == 'r') {
+                return false;
+            } else if (second_piece == 'h') {
+                return false;
+            } else if (second_piece == 'b') {
+                return false;
+            } else if (second_piece == 'k') {
+                return false;
+            } else if (second_piece == 'q') {
+                return false;
+            } else if (second_piece == 'p') {
+                return false;
+            }
+        }
 
         boolean upper_right = ((first_piece_col + 1) < 8) && ((first_piece_row - 2) >= 0);
         boolean upper_mid_right = ((first_piece_col + 2) < 8) && ((first_piece_row - 1) >= 0);

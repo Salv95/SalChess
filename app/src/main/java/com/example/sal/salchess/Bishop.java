@@ -1,6 +1,5 @@
 package com.example.sal.salchess;
 
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +35,22 @@ public class Bishop extends Piece{
             }
         }
 
+        if(this.getColor() == "Black") {
+            if (second_piece == 'r') {
+                return false;
+            } else if (second_piece == 'h') {
+                return false;
+            } else if (second_piece == 'b') {
+                return false;
+            } else if (second_piece == 'k') {
+                return false;
+            } else if (second_piece == 'q') {
+                return false;
+            } else if (second_piece == 'p') {
+                return false;
+            }
+        }
+
 
         Grid temp_grid = new Grid();
         temp_grid = super.getGrid();
@@ -51,7 +66,6 @@ public class Bishop extends Piece{
         if(second_piece_row < first_piece_row && second_piece_col < first_piece_col){
 
             while(temp_row > second_piece_row && temp_col > second_piece_col){
-                Log.d("wtf1", "wtf1");
                 temp_col--;
                 temp_row--;
                 possibles.put(temp_row, temp_col);
@@ -87,7 +101,6 @@ public class Bishop extends Piece{
 
 
             while(temp_row > 0 && temp_col < 7){
-                Log.d("wtf2", "wtf2");
                 temp_col++;
                 temp_row--;
                 possibles.put(temp_row, temp_col);
@@ -123,24 +136,15 @@ public class Bishop extends Piece{
 
 
            while(temp_row < 7 && temp_col > 0){//something wrong here
-               Log.d("wtf3", "wtf3");
                temp_col--;
                temp_row++;
                possibles.put(temp_row, temp_col);
-               Log.d("possibles_row3", String.valueOf(temp_row));
-               Log.d("possibles_col3", String.valueOf(temp_col));
 
-               Log.d("is it null3", String.valueOf(possibles.get(second_piece_row)));
-               Log.d("row3", String.valueOf(second_piece_row));
-               Log.d("col3", String.valueOf(second_piece_col));
                if(temp_row == second_piece_row && temp_col == second_piece_col){
                    break;
                }
                else{
                    if(arr[temp_row][temp_col] != '#'){
-                       Log.d("vals", String.valueOf(arr[temp_row][temp_col]));
-                       Log.d("roww", String.valueOf(temp_row));
-                       Log.d("coll", String.valueOf(temp_col));
                        return false;
                    }
                }
@@ -168,12 +172,10 @@ public class Bishop extends Piece{
 
 
             while(temp_row < 7 && temp_col < 7){
-                Log.d("wtf4", "wtf4");
                 temp_col++;
                 temp_row++;
                 possibles.put(temp_row, temp_col);
-                Log.d("possibles_row4", String.valueOf(temp_row));
-                Log.d("possibles_col4", String.valueOf(temp_col));
+
                 if(temp_row == second_piece_row && temp_col == second_piece_col){
                     break;
                 }
@@ -186,9 +188,6 @@ public class Bishop extends Piece{
 
             }
 
-            Log.d("is it null4", String.valueOf(possibles.get(second_piece_row)));
-            Log.d("row4", String.valueOf(second_piece_row));
-            Log.d("col4", String.valueOf(second_piece_col));
 
             if(possibles.get(second_piece_row) != null){
 

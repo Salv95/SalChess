@@ -7,7 +7,7 @@ package com.example.sal.salchess;
 public class King extends  Piece{
 
     King(String color, Grid grid) {
-        super(color, "Horse", false, false, grid);
+        super(color, "King", false, false, grid);
     }
 
     @Override
@@ -26,6 +26,22 @@ public class King extends  Piece{
             } else if (second_piece == 'Q') {
                 return false;
             } else if (second_piece == 'P') {
+                return false;
+            }
+        }
+
+        if(this.getColor() == "Black") {
+            if (second_piece == 'r') {
+                return false;
+            } else if (second_piece == 'h') {
+                return false;
+            } else if (second_piece == 'b') {
+                return false;
+            } else if (second_piece == 'k') {
+                return false;
+            } else if (second_piece == 'q') {
+                return false;
+            } else if (second_piece == 'p') {
                 return false;
             }
         }

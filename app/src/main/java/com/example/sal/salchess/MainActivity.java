@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Random;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private int offset = 2131427423;
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(first == true && previous_click != id){
-            Log.d("item1", "First item");
             first = false;
             previous_click = id;
             doubleClicked = 0;
@@ -54,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else if(previous_click == id){
-            Log.d("item2", "Nothing happens");
             doubleClicked++;
-            Log.d("item2", String.valueOf(doubleClicked));
 
             if(doubleClicked % 2 == 0){
                 first = false;
@@ -70,16 +68,11 @@ public class MainActivity extends AppCompatActivity {
         }
         //second location clicked
         else{
-            Log.d("item3", "Second item");
             first = true;
             doubleClicked = 0;
             previous_click = id;
             second_piece_clicked(tappedView);
         }
-
-        Log.d("image Source", String.valueOf(((ImageView) view).getTag()));
-
-
 
     }
 
@@ -97,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         first_view = tappedView;
+
+        Log.d("First White", String.valueOf(first_piece));
     }
 
     public void second_piece_clicked(ImageView tappedView){
@@ -154,8 +149,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void actionBasedOnPiece(){
 
-        Log.d("piece", String.valueOf(first_piece));
-
         boolean validMove = false;
 
         switch (first_piece){
@@ -184,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
                 Pawn wPawn = new Pawn("White", grid);
                 validMove = wPawn.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
-                Log.d("pass", String.valueOf(validMove));
                 if(validMove){
                     upDateGridAndViewWhite();
                     validMove = false;
@@ -208,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
             case 'B':
                 Bishop wBishop = new Bishop("White", grid);
                 validMove = wBishop.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
-                Log.d("Bishop", String.valueOf(validMove));
 
                 if(validMove){
                     upDateGridAndViewWhite();
@@ -241,8 +232,7 @@ public class MainActivity extends AppCompatActivity {
         boolean pass = false;
 
         do{
-            Log.d("Hi", "hi");
-
+            Log.d("runs", "runs");
             ArrayList<Character> white_pieces = new ArrayList<Character>();
             white_pieces.add('R');
             white_pieces.add('H');
@@ -263,33 +253,96 @@ public class MainActivity extends AppCompatActivity {
             int answer1 = rn.nextInt(64);
             int answer2 = rn.nextInt(64);
 
-            Log.d("Hi1", "hi1");
-
             int id1 = getViewID(answer1);
             int id2 = getViewID(answer2);
 
-            Log.d("id1", String.valueOf(answer1));
-            Log.d("id2", String.valueOf(answer2));
-
-            Log.d("Hi2", "hi2");
-
-
             ImageView image1 = (ImageView) findViewById(id1);
             ImageView image2 = (ImageView) findViewById(id2);
-
-            Log.d("Hi3", "hi3");
 
             ArrayList<Integer> vals1 = grid.numToTwoDIndex(answer1);
             ArrayList<Integer> vals2 = grid.numToTwoDIndex(answer2);
             char piece = grid.getItemAtLocation(answer1);
             char piece2 = grid.getItemAtLocation(answer2);
 
-
             if((piece == '#' || black_pieces.contains(piece2)) || (white_pieces.contains(piece))){
                 pass = true;
             }
+            else if(piece == 'b'){
+                Log.d("Bishop","bishop selected");
+                Bishop bishop = new Bishop("Black", grid);
+                boolean bishop_valid_move = bishop.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
+                if(bishop_valid_move) {
+                    upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
+                    pass = false;
+                }
+                else{
+                    pass = true;
+                }
+            }
+            else if(piece == 'k'){
+                Log.d("king","king selected");
+                King king = new King("Black", grid);
+                boolean king_valid_move = king.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
+                if(king_valid_move) {
+                    upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
+                    pass = false;
+                }
+                else{
+                    pass = true;
+                }
+            }
+            else if(piece == 'h'){
+                Log.d("knight","knight selected");
+                Knight knight = new Knight("Black", grid);
+                boolean knight_valid_move = knight.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
+                if(knight_valid_move) {
+                    upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
+                    pass = false;
+                }
+                else{
+                    pass = true;
+                }
+            }
+            else if(piece == 'r'){
+                Log.d("rook","rook selected");
+                Rook rook = new Rook("Black", grid);
+                boolean rook_valid_move = rook.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
+                if(rook_valid_move) {
+                    upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
+                    pass = false;
+                }
+                else{
+                    pass = true;
+                }
+            }
+            else if(piece == 'p'){
+                Log.d("pawn","pawn selected");
+                Pawn pawn = new Pawn("Black", grid);
+                boolean pawn_valid_move = pawn.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
+                if(pawn_valid_move) {
+                    upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
+                    pass = false;
+                }
+                else{
+                    pass = true;
+                }
+            }
+            else if(piece == 'q'){
+                Log.d("queen","queen selected");
+                Rook rookQ = new Rook("Black", grid);
+                Bishop bishopQ = new Bishop("Black", grid);
+                boolean bishop_valid_moveQ = bishopQ.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
+                boolean rook_valid_moveQ = rookQ.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
+
+                if(rook_valid_moveQ || bishop_valid_moveQ) {
+                    upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
+                    pass = false;
+                }
+                else{
+                    pass = true;
+                }
+            }
             else{
-                Log.d("Hi4", "hi4");
                 upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
                 pass = false;
             }
@@ -316,52 +369,40 @@ public class MainActivity extends AppCompatActivity {
 
         char first_val = new_grid[firstPieceRow][firstPieceCol];
 
-        Log.d("test1", "test1");
         new_grid[secondPieceRow][secondPieceCol] = first_val;
-        Log.d("test2", "test2");
         new_grid[firstPieceRow][firstPieceCol] = '#';
-        Log.d("test3", "test3");
 
         grid.setGridArr(new_grid);
-        Log.d("test4", "test4");
         //switch values in in ImageView
        firstView.setImageResource(android.R.color.transparent);
 
-        Log.d("test5", "test5");
         switch(firstPiece){
 
             case 'r':
                 secondView.setImageResource(R.drawable.b_rook);
                 secondView.setEnabled(true);
-                Log.d("test", "b_rook");
                 break;
             case 'h':
                 secondView.setImageResource(R.drawable.b_knight);
                 secondView.setEnabled(true);
-                Log.d("test", "b_knight");
                 break;
             case 'b':
                 secondView.setImageResource(R.drawable.b_bishop);
                 secondView.setEnabled(true);
-                Log.d("test", "b_bishop");
                 break;
             case 'k':
                 secondView.setImageResource(R.drawable.b_king);
                 secondView.setEnabled(true);
-                Log.d("test", "b_king");
                 break;
             case 'q':
                 secondView.setImageResource(R.drawable.b_queen);
                 secondView.setEnabled(true);
-                Log.d("test", "b_queen");
                 break;
             case 'p':
                 secondView.setImageResource(R.drawable.b_pawn);
                 secondView.setEnabled(true);
-                Log.d("test", "b_pawn");
                 break;
             default:
-                Log.d("test6", "test6");
                 break;
         }
 
@@ -385,7 +426,6 @@ public class MainActivity extends AppCompatActivity {
 
         char first_val = new_grid[first_piece_row][first_piece_col];
 
-        Log.d("first_val", String.valueOf(first_val));
         new_grid[second_piece_row][second_piece_col] = first_val;
 
         new_grid[first_piece_row][first_piece_col] = '#';

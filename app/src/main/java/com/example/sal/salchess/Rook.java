@@ -26,25 +26,38 @@ public class Rook extends Piece {
         if(first_piece_row == second_piece_row && first_piece_col == second_piece_col){//Rook can't attak itself
             return false;
         }
-        if(this.getColor() == "White"){
-            if(second_piece == 'R' ){
+
+        if(this.getColor() == "White") {
+            if (second_piece == 'R') {
+                return false;
+            } else if (second_piece == 'H') {
+                return false;
+            } else if (second_piece == 'B') {
+                return false;
+            } else if (second_piece == 'K') {
+                return false;
+            } else if (second_piece == 'Q') {
+                return false;
+            } else if (second_piece == 'P') {
                 return false;
             }
-            else if(second_piece == 'H' ){
+        }
+
+        if(this.getColor() == "Black") {
+            if (second_piece == 'r') {
+                return false;
+            } else if (second_piece == 'h') {
+                return false;
+            } else if (second_piece == 'b') {
+                return false;
+            } else if (second_piece == 'k') {
+                return false;
+            } else if (second_piece == 'q') {
+                return false;
+            } else if (second_piece == 'p') {
                 return false;
             }
-            else if(second_piece == 'B' ){
-                return false;
-            }
-            else if(second_piece == 'K' ){
-                return false;
-            }
-            else if(second_piece == 'Q' ){
-                return false;
-            }
-            else if(second_piece == 'P' ){
-                return false;
-            }
+        }
 
             //check if there are any pieces intersecting the path of the Rook
 
@@ -94,7 +107,7 @@ public class Rook extends Piece {
                     }
                 }
             }
-        }
+
 
         return true;
     }

@@ -1,5 +1,7 @@
 package com.example.sal.salchess;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -8,26 +10,34 @@ import java.util.ArrayList;
 
 public class Pawn extends Piece {
 
-    Pawn(String color, Grid grid){
+    Pawn(String color, Grid grid) {
         super(color, "Pawn", false, false, grid);
 
     }
+
     @Override
     public boolean checkIfValidMove(char first_piece, int first_piece_row, int first_piece_col, char second_piece, int second_piece_row, int second_piece_col) {
 
-        boolean one_up = (first_piece - 1) >= 0;
+        //for white pieces
+        boolean one_up = first_piece_row >= 0;
         boolean attack_right = (first_piece_col + 1) < 8 && (first_piece_row - 1) >= 0;
         boolean attack_left = (first_piece_col - 1) >= 0 && (first_piece_row - 1) >= 0;
+
+        //for black pieces
+        boolean one_down = (first_piece_row + 1) < 8;
+        boolean attack_down_right = (first_piece_col + 1) < 8 && (first_piece_row + 1) < 8;
+        boolean attack_down_left = (first_piece_col - 1) >= 0 && (first_piece_row + 1) < 8;
+
 
 
         Grid temp_grid = new Grid();
         temp_grid = super.getGrid();
-        char [][] arr = temp_grid.getGridArr();
+        char[][] arr = temp_grid.getGridArr();
 
 
         ArrayList<Character> opponents = new ArrayList<Character>();
 
-        if(this.getColor() == "White") {
+        if (this.getColor() == "White") {
             if (second_piece == 'R') {
                 return false;
             } else if (second_piece == 'H') {
@@ -47,9 +57,57 @@ public class Pawn extends Piece {
             opponents.add('k');
             opponents.add('q');
             opponents.add('p');
-        }
-        else if(this.getColor() == "Black") {
-            if (second_piece == 'R') {
+
+            if (first_piece_row == 6) {//works
+
+                if (first_piece_col == second_piece_col) {
+                    if ((first_piece_row - 1) == second_piece_row) {
+                        if (second_piece == '#') {
+                            return true;
+                        }
+                    }
+                    if ((first_piece_row - 2) == second_piece_row) {
+                        if (second_piece == '#' && arr[second_piece_row + 1][second_piece_col] == '#') {
+                            return true;
+                        }
+                    }
+                }
+
+            }
+            if (one_up) {//works
+                if (first_piece_col == second_piece_col) {
+                    if (((first_piece_row - 1) == second_piece_row)) {
+                        if (!opponents.contains(second_piece)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            if (attack_right) {// works
+
+                if ((second_piece_col == first_piece_col + 1) && (second_piece_row == first_piece_row - 1)) {
+
+                    if (opponents.contains(second_piece)) {
+                        return true;
+                    }
+
+                }
+            }
+
+            if (attack_left) {//does not work
+
+                if ((second_piece_col == first_piece_col - 1) && (second_piece_row == first_piece_row - 1)) {
+
+                    if (opponents.contains(second_piece)) {
+                        return true;
+                    }
+                }
+            }
+
+        } else if(this.getColor() == "Black") {
+
+            if (second_piece == 'r') {
                 return false;
             } else if (second_piece == 'h') {
                 return false;
@@ -63,6 +121,7 @@ public class Pawn extends Piece {
                 return false;
             }
 
+
             opponents.add('R');
             opponents.add('H');
             opponents.add('B');
@@ -70,58 +129,59 @@ public class Pawn extends Piece {
             opponents.add('Q');
             opponents.add('P');
 
-        }
+            if(first_piece_row == 1) {//works
 
+                if (first_piece_col == second_piece_col) {
+                    if ((first_piece_row + 1) == second_piece_row) {
+                        if (second_piece == '#') {
+                            return true;
+                        }
+                    }
+                    if ((first_piece_row + 2) == second_piece_row) {
+                        if (second_piece == '#' && arr[second_piece_row - 1][second_piece_col] == '#') {
+                            return true;
+                        }
+                    }
+                }
 
-        if(first_piece_row == 6){
+            }
+            if(one_down) {//works
+                if (first_piece_col == second_piece_col) {
+                    if (((first_piece_row + 1) == second_piece_row)) {
+                        if (second_piece == '#') {
+                            return true;
+                        }
+                    }
+                }
+            }
 
-            if(first_piece_col == second_piece_col){
-                if((first_piece_row - 1) == second_piece_row){
-                    if(second_piece == '#'){
+            if(attack_down_right) {//this works
+
+                if ((second_piece_col == first_piece_col + 1) && (second_piece_row == first_piece_row + 1)) {
+
+                    if (opponents.contains(second_piece)) {
+                        return true;
+                    }
+
+                }
+            }
+
+            if(attack_down_left) {//doesnt work
+                Log.d("passes", "yes");
+
+                if ((second_piece_col == first_piece_col - 1) && (second_piece_row == first_piece_row + 1)) {
+
+                    if (opponents.contains(second_piece)) {
                         return true;
                     }
                 }
-                if((first_piece_row - 2) == second_piece_row){
-                    if(second_piece == '#' && arr[second_piece_row + 1][second_piece_col] == '#'){
-                        return true;
-                    }
-                }
             }
 
+
         }
-        if(one_up){
-            if(first_piece_col == second_piece_col){
-                if(((first_piece_row - 1) == second_piece_row)){
-                    if(!opponents.contains(second_piece)){
-                        return true;
-                    }
-                }
-            }
-        }
-
-        if(attack_right){
-
-            if((second_piece_col == first_piece_col + 1) && (second_piece_row == first_piece_row - 1)){
-
-                if(opponents.contains(second_piece)){
-                    return true;
-                }
-
-            }
-        }
-
-        if(attack_left){
-
-            if((second_piece_col == first_piece_col - 1) && (second_piece_row == first_piece_row - 1)){
-
-                if(opponents.contains(second_piece)){
-                    return true;
-                }
-            }
-        }
-
-
-
         return false;
     }
+
+
 }
+
