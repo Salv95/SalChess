@@ -2,6 +2,8 @@ package com.example.sal.salchess;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by Sal on 7/31/17.
  */
@@ -69,7 +71,7 @@ public class Rook extends Piece {
 
                 if(first_piece_col < second_piece_col){
 
-                    for(int j = first_piece_col + 1; j < second_piece_col; j++){//runs through the pieces inbetween the two selected
+                    for(int j = first_piece_col + 1; j < second_piece_col; j++){//runs through the pieces in between the two selected
 
                         if(grid_arr[first_piece_row][j] != '#'){
                             return false;
@@ -110,6 +112,18 @@ public class Rook extends Piece {
 
 
         return true;
+    }
+
+    //need to create function that returns an array with all the possible positions the Rook can land on
+
+
+    public void getPossiblePositions(char first_piece, int first_piece_row){
+
+        ArrayList<Integer> cols = new ArrayList<Integer>();
+        ArrayList<Integer> rows = new ArrayList<Integer>();
+
+        Grid grid = super.getGrid();
+        
     }
 }
 

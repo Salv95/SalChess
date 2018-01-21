@@ -35,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView first_view;
     ImageView second_view;
 
-    ArrayList<ImageView> views_clicked = new ArrayList<ImageView>();
+//    ArrayList<ImageView> views_clicked = new ArrayList<ImageView>();
+
+    WhitePiecesLocation whitePiecesLoc = new WhitePiecesLocation();
 
     public void gameLogic(View view){
 
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void first_piece_clicked(ImageView tappedView){
+    public void first_piece_clicked(ImageView tappedView){//add White index here?
 
         first_piece = (char)((int) CheckWhatPiece(tappedView).get(0));
         first_piece_row = CheckWhatPiece(tappedView).get(1);
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         second_view = tappedView;
 
         actionBasedOnPiece();
+        whitePiecesLoc.printLocations();
     }
 
     public ArrayList<Integer> CheckWhatPiece(ImageView view){
@@ -128,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             matched = matcher.group();
         }
 
-        int num = Integer.parseInt(matched);
+        int num = Integer.parseInt(matched);// 1D index
 
         char chessPiece = grid.getItemAtLocation(num);
 
@@ -147,7 +150,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //checks what White piece was clicked
+    //I need to store the indexes of the white pieces and the tyoe for later analysis
     public void actionBasedOnPiece(){
+
+
+        whitePiecesLoc.printLocations();
 
         boolean validMove = false;
 
@@ -160,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 //if valid move the chang the grid and the view
                 if(validMove){
                     upDateGridAndViewWhite();
-                    validMove = false;
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
                 }
                 break;
             case 'H':
@@ -169,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(validMove){
                     upDateGridAndViewWhite();
-                    validMove = false;
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
                 }
                 break;
 
@@ -179,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(validMove){
                     upDateGridAndViewWhite();
-                    validMove = false;
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
                 }
                 break;
 
@@ -195,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(validMove2 || validMove3){
                     upDateGridAndViewWhite();
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
                 }
                 break;
             case 'B':
@@ -203,7 +212,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(validMove){
                     upDateGridAndViewWhite();
-                    validMove = false;
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+
                 }
                 break;
 
@@ -214,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(validMove){
                     upDateGridAndViewWhite();
-                    validMove = false;
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
                 }
                 break;
 
@@ -264,6 +274,8 @@ public class MainActivity extends AppCompatActivity {
             char piece = grid.getItemAtLocation(answer1);
             char piece2 = grid.getItemAtLocation(answer2);
 
+
+            //if first piece is empty, or if both pieces are black, or the first piece is white, the grid does not get upgraded
             if((piece == '#' || black_pieces.contains(piece2)) || (white_pieces.contains(piece))){
                 pass = true;
             }
