@@ -11,6 +11,11 @@ import java.util.ArrayList;
 public class Rook extends Piece {
 
 
+    Grid grid = super.getGrid();
+    char [][] grid_arr = grid.getGridArr();
+
+
+
     Rook(String color, Grid grid){
         super(color, "Rook", false, false, grid);
     }
@@ -63,8 +68,6 @@ public class Rook extends Piece {
 
             //check if there are any pieces intersecting the path of the Rook
 
-            Grid grid = super.getGrid();
-            char [][] grid_arr = grid.getGridArr();
 
 
             if(first_piece_row == second_piece_row){
@@ -117,13 +120,53 @@ public class Rook extends Piece {
     //need to create function that returns an array with all the possible positions the Rook can land on
 
 
-    public void getPossiblePositions(char first_piece, int first_piece_row){
+    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
+
+
+
+        Log.d(String.valueOf(first_piece_row), String.valueOf(first_piece_col));
+
 
         ArrayList<Integer> cols = new ArrayList<Integer>();
         ArrayList<Integer> rows = new ArrayList<Integer>();
 
-        Grid grid = super.getGrid();
-        
+
+        for(int row = 0; row < 8; row++){
+
+            if(row != first_piece_row){//Skip the row where the piece is currently located
+                if(checkIfValidMove(first_piece, first_piece_row, first_piece_col,grid_arr[row][first_piece_col], row, first_piece_col )){
+
+                    rows.add(row);
+                    cols.add(first_piece_col);
+                }
+            }
+        }
+
+        for(int col = 0; col < 8; col++){
+
+            if(col != first_piece_col){//Skip the column where the piece is currently located
+                if(checkIfValidMove(first_piece, first_piece_row, first_piece_col,grid_arr[first_piece_row][col], first_piece_row, col )){
+
+                    rows.add(first_piece_row);
+                    cols.add(col);
+                }
+            }
+        }
+
+        int row_temp = 0;
+        int col_temp = 0;
+        String together = "";
+
+        Log.d("Possibilities", "Possibilities");
+        for(int i = 0; i < rows.size(); i++){
+
+            row_temp = rows.get(i);
+            col_temp = cols.get(i);
+            together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
+            Log.d("Rook poss location: ", together);
+        }
+
+
     }
 }
 

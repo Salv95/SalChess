@@ -99,4 +99,9 @@ public class King extends  Piece{
 
         return false;
     }
+
+    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
+
+        
+    }
 }

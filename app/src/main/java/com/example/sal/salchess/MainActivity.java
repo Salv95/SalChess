@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         second_view = tappedView;
 
         actionBasedOnPiece();
-        whitePiecesLoc.printLocations();
+        //whitePiecesLoc.printLocations();
     }
 
     public ArrayList<Integer> CheckWhatPiece(ImageView view){
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
     public void actionBasedOnPiece(){
 
 
-        whitePiecesLoc.printLocations();
+        //whitePiecesLoc.printLocations();
 
         boolean validMove = false;
 
@@ -164,11 +164,10 @@ public class MainActivity extends AppCompatActivity {
             case 'R':
                 Rook wRook = new Rook("White", grid);
                 validMove = wRook.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
-
                 //if valid move the chang the grid and the view
                 if(validMove){
-                    upDateGridAndViewWhite();
                     whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    upDateGridAndViewWhite();
                 }
                 break;
             case 'H':
@@ -176,8 +175,8 @@ public class MainActivity extends AppCompatActivity {
                 validMove = wKnight.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove){
-                    upDateGridAndViewWhite();
                     whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    upDateGridAndViewWhite();
                 }
                 break;
 
@@ -186,8 +185,8 @@ public class MainActivity extends AppCompatActivity {
                 validMove = wPawn.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove){
-                    upDateGridAndViewWhite();
                     whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    upDateGridAndViewWhite();
                 }
                 break;
 
@@ -202,8 +201,8 @@ public class MainActivity extends AppCompatActivity {
                 validMove3 = wBishopQ.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove2 || validMove3){
-                    upDateGridAndViewWhite();
                     whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    upDateGridAndViewWhite();
                 }
                 break;
             case 'B':
@@ -211,8 +210,8 @@ public class MainActivity extends AppCompatActivity {
                 validMove = wBishop.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove){
-                    upDateGridAndViewWhite();
                     whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    upDateGridAndViewWhite();
 
                 }
                 break;
@@ -223,8 +222,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if(validMove){
-                    upDateGridAndViewWhite();
                     whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    upDateGridAndViewWhite();
                 }
                 break;
 
@@ -238,6 +237,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void activateAI(){
+
+
 
         boolean pass = false;
 
@@ -360,6 +361,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }while(pass == true);
 
+
+//        Rook wlRook = new Rook("White", grid);
+//        wlRook.getPossiblePositions('R',whitePiecesLoc.get_rows()[8],whitePiecesLoc.get_columns()[8]);//to get left Rook
+
+//
+//        Rook wrRook = new Rook("White", grid);
+//        wrRook.getPossiblePositions('R',whitePiecesLoc.get_rows()[15],whitePiecesLoc.get_columns()[15]);//to get right Rook
 
 
 

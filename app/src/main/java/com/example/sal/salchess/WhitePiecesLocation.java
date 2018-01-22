@@ -25,6 +25,16 @@ public class WhitePiecesLocation {
         piece = new char[]{'P','P','P','P','P','P','P','P','R','H','B','Q','K','B','H','R'};
     }
 
+    int[] get_rows(){
+
+        return row;
+    }
+
+    int[] get_columns(){
+
+        return col;
+    }
+
 
     public void printLocations(){
 
@@ -37,7 +47,6 @@ public class WhitePiecesLocation {
             row_temp = row[i];
             col_temp = col[i];
             together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp) + " Piece: " + piece[i];
-
             Log.d("White piece Location: ", together);
         }
     }
