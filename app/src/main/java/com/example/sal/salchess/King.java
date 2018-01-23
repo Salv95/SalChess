@@ -1,5 +1,9 @@
 package com.example.sal.salchess;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+
 /**
  * Created by Sal on 8/8/17.
  */
@@ -102,6 +106,107 @@ public class King extends  Piece{
 
     public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
 
-        
+
+        ArrayList<Integer> cols = new ArrayList<Integer>();
+        ArrayList<Integer> rows = new ArrayList<Integer>();
+
+        ArrayList<Character> white_pieces = new ArrayList<Character>();
+
+        white_pieces.add('R');
+        white_pieces.add('H');
+        white_pieces.add('B');
+        white_pieces.add('Q');
+        white_pieces.add('P');
+
+
+        boolean up = (first_piece_row - 1) >= 0;
+        boolean up_left = (first_piece_row - 1) >= 0 && (first_piece_col - 1) >= 0;
+        boolean up_right = (first_piece_row - 1) >= 0 && (first_piece_col + 1) < 8;
+        boolean right = (first_piece_col + 1) < 8;
+        boolean down_right = (first_piece_row + 1) < 8 && (first_piece_col + 1) < 8;
+        boolean down = (first_piece_row + 1) < 8;
+        boolean down_left = (first_piece_row + 1) < 8 && (first_piece_col - 1) >= 0;
+        boolean left = (first_piece_col - 1) >= 0;
+
+        if(up){
+
+            if(!(white_pieces.contains(super.getGrid().getGridArr()[first_piece_row - 1][first_piece_col]))){//if the upward piece is not a friendly white piece
+                rows.add(first_piece_row - 1);
+                cols.add(first_piece_col);
+            }
+        }
+        if(up_left){
+
+            if(!(white_pieces.contains(super.getGrid().getGridArr()[first_piece_row - 1][first_piece_col - 1]))){//if the upward piece is not a friendly white piece
+                rows.add(first_piece_row - 1);
+                cols.add(first_piece_col - 1);
+            }
+        }
+        if(up_right){
+
+            if(!(white_pieces.contains(super.getGrid().getGridArr()[first_piece_row - 1][first_piece_col + 1]))){//if the upward piece is not a friendly white piece
+                rows.add(first_piece_row - 1);
+                cols.add(first_piece_col + 1);
+            }
+        }
+        if(right){
+
+            if(!(white_pieces.contains(super.getGrid().getGridArr()[first_piece_row][first_piece_col + 1]))){//if the upward piece is not a friendly white piece
+                rows.add(first_piece_row);
+                cols.add(first_piece_col + 1);
+            }
+
+        }
+        if(down_right){
+
+            if(!(white_pieces.contains(super.getGrid().getGridArr()[first_piece_row + 1][first_piece_col + 1]))){//if the upward piece is not a friendly white piece
+                rows.add(first_piece_row + 1);
+                cols.add(first_piece_col + 1);
+            }
+
+        }
+        if(down){
+
+            if(!(white_pieces.contains(super.getGrid().getGridArr()[first_piece_row + 1][first_piece_col]))){//if the upward piece is not a friendly white piece
+
+                rows.add(first_piece_row + 1);
+                cols.add(first_piece_col);
+            }
+
+        }
+        if(down_left){
+
+            if(!(white_pieces.contains(super.getGrid().getGridArr()[first_piece_row + 1][first_piece_col - 1]))){//if the upward piece is not a friendly white piece
+
+                rows.add(first_piece_row + 1);
+                cols.add(first_piece_col - 1);
+            }
+
+        }
+        if(left){
+
+            if(!(white_pieces.contains(super.getGrid().getGridArr()[first_piece_row][first_piece_col - 1]))){//if the upward piece is not a friendly white piece
+
+                rows.add(first_piece_row);
+                cols.add(first_piece_col - 1);
+            }
+
+
+        }
+
+
+        int row_temp = 0;
+        int col_temp = 0;
+        String together = "";
+
+        Log.d("Possibilities", "Possibilities");
+        for(int i = 0; i < rows.size(); i++){
+
+            row_temp = rows.get(i);
+            col_temp = cols.get(i);
+            together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
+            Log.d("King poss location: ", together);
+        }
+
     }
 }
