@@ -369,8 +369,11 @@ public class MainActivity extends AppCompatActivity {
 //        Rook wrRook = new Rook("White", grid);
 //        wrRook.getPossiblePositions('R',whitePiecesLoc.get_rows()[15],whitePiecesLoc.get_columns()[15]);//to get right Rook
 
-        King wKing = new King("White", grid);
-        wKing.getPossiblePositions('K',whitePiecesLoc.get_rows()[12],whitePiecesLoc.get_columns()[12]);//to get king
+//        King wKing = new King("White", grid);
+//        wKing.getPossiblePositions('K',whitePiecesLoc.get_rows()[12],whitePiecesLoc.get_columns()[12]);//to get king
+
+        Knight wlKnight = new Knight("White", grid);
+        wlKnight.getPossiblePositions('H', whitePiecesLoc.get_rows()[9], whitePiecesLoc.get_columns()[9]);// to get left Knight
 
 
 
