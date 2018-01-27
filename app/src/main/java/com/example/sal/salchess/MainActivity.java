@@ -372,8 +372,11 @@ public class MainActivity extends AppCompatActivity {
 //        Bishop wlBishop = new Bishop("White", grid);
 //        wlBishop.getPossiblePositions('B', whitePiecesLoc.get_rows()[10], whitePiecesLoc.get_columns()[10]);
 //
-        Queen wQueen = new Queen("White", grid);
-        wQueen.getPossiblePositions('Q', whitePiecesLoc.get_rows()[11], whitePiecesLoc.get_columns()[11]);
+//        Queen wQueen = new Queen("White", grid);
+//        wQueen.getPossiblePositions('Q', whitePiecesLoc.get_rows()[11], whitePiecesLoc.get_columns()[11]);
+
+        Pawn w1Pawn = new Pawn("White", grid);
+        w1Pawn.getPossiblePositions('Q', whitePiecesLoc.get_rows()[0], whitePiecesLoc.get_columns()[0]);
 
 
 

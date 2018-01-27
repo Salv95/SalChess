@@ -182,6 +182,55 @@ public class Pawn extends Piece {
         return false;
     }
 
+    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){//need to make this function not be O(2)
+
+
+        ArrayList<Integer> cols = new ArrayList<Integer>();
+        ArrayList<Integer> rows = new ArrayList<Integer>();
+
+        ArrayList<Character> white_pieces = new ArrayList<Character>();
+
+        white_pieces.add('R');
+        white_pieces.add('H');
+        white_pieces.add('K');
+        white_pieces.add('B');
+        white_pieces.add('P');
+
+
+        for(int i = 0; i < 8; i++){
+
+            for(int j = 0; j < 8; j++){
+
+                if(!(white_pieces.contains(super.getGrid().getGridArr()[i][j]))){
+
+                    if(checkIfValidMove(first_piece, first_piece_row, first_piece_col, super.getGrid().getGridArr()[i][j], i, j)){
+
+                        if(!(first_piece_row == i && first_piece_col == j)){
+                            cols.add(j);
+                            rows.add(i);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        int row_temp = 0;
+        int col_temp = 0;
+        String together = "";
+
+        Log.d("Pawn Possibilities", "Pawn Possibilities");
+        Log.d("Amount of item", Integer.toString(rows.size()));
+        for(int i = 0; i < rows.size(); i++){
+
+            row_temp = rows.get(i);
+            col_temp = cols.get(i);
+            together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
+            Log.d("Pawn poss location: ", together);
+        }
+
+    }
+
 
 }
 
