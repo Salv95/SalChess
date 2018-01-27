@@ -191,16 +191,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 'Q':
-                Rook wRookQ = new Rook("White", grid);
-                Bishop wBishopQ = new Bishop("White", grid);
+                Queen wQueen = new Queen("White", grid);
+                validMove = wQueen.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
-                boolean validMove2 = false;
-                boolean validMove3 = false;
-
-                validMove2 = wRookQ.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
-                validMove3 = wBishopQ.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
-
-                if(validMove2 || validMove3){
+                if(validMove){
                     whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
                     upDateGridAndViewWhite();
                 }
@@ -372,8 +366,14 @@ public class MainActivity extends AppCompatActivity {
 //        King wKing = new King("White", grid);
 //        wKing.getPossiblePositions('K',whitePiecesLoc.get_rows()[12],whitePiecesLoc.get_columns()[12]);//to get king
 
-        Knight wlKnight = new Knight("White", grid);
-        wlKnight.getPossiblePositions('H', whitePiecesLoc.get_rows()[9], whitePiecesLoc.get_columns()[9]);// to get left Knight
+//        Knight wlKnight = new Knight("White", grid);
+//        wlKnight.getPossiblePositions('H', whitePiecesLoc.get_rows()[9], whitePiecesLoc.get_columns()[9]);// to get left Knight
+
+//        Bishop wlBishop = new Bishop("White", grid);
+//        wlBishop.getPossiblePositions('B', whitePiecesLoc.get_rows()[10], whitePiecesLoc.get_columns()[10]);
+//
+        Queen wQueen = new Queen("White", grid);
+        wQueen.getPossiblePositions('Q', whitePiecesLoc.get_rows()[11], whitePiecesLoc.get_columns()[11]);
 
 
 

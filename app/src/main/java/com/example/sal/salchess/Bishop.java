@@ -3,6 +3,7 @@ package com.example.sal.salchess;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import android.util.Log;
 
 /**
  * Created by Sal on 8/6/17.
@@ -16,7 +17,7 @@ public class Bishop extends Piece{
 
     }
     @Override
-    public boolean checkIfValidMove(char first_piece, int first_piece_row, int first_piece_col, char second_piece, int second_piece_row, int second_piece_col) {
+    public boolean checkIfValidMove(char first_piece, int first_piece_row, int first_piece_col, char second_piece, int second_piece_row, int second_piece_col){
 
 
         if(this.getColor() == "White") {
@@ -52,7 +53,8 @@ public class Bishop extends Piece{
         }
 
 
-        Grid temp_grid = new Grid();
+        Grid temp_grid;
+
         temp_grid = super.getGrid();
         char [][] arr = temp_grid.getGridArr();
 
@@ -87,6 +89,7 @@ public class Bishop extends Piece{
             if(possibles.get(second_piece_row) != null){
 
                 if(possibles.get(second_piece_row) == second_piece_col){
+//                    Log.d("up left Bishop", Integer.toString(possibles.get(second_piece_row)));
                     return true;
                 }
 
@@ -152,7 +155,6 @@ public class Bishop extends Piece{
            }
 
 
-
            if(possibles.get(second_piece_row) != null){
 
                if(possibles.get(second_piece_row) == second_piece_col){
@@ -185,9 +187,7 @@ public class Bishop extends Piece{
                     }
                 }
 
-
             }
-
 
             if(possibles.get(second_piece_row) != null){
 
@@ -202,6 +202,53 @@ public class Bishop extends Piece{
 
         return false ;
 
+    }
+
+    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
+
+
+        ArrayList<Integer> cols = new ArrayList<Integer>();
+        ArrayList<Integer> rows = new ArrayList<Integer>();
+
+        ArrayList<Character> white_pieces = new ArrayList<Character>();
+
+        white_pieces.add('R');
+        white_pieces.add('H');
+        white_pieces.add('K');
+        white_pieces.add('Q');
+        white_pieces.add('P');
+
+
+        for(int i = 0; i < 8; i++){
+
+            for(int j = 0; j < 8; j++){
+
+                if(!(white_pieces.contains(super.getGrid().getGridArr()[i][j]))){
+
+                    if(checkIfValidMove(first_piece, first_piece_row, first_piece_col, super.getGrid().getGridArr()[i][j], i, j)){
+
+                        if(!(first_piece_row == i && first_piece_col == j)){
+                            cols.add(j);
+                            rows.add(i);
+                        }
+                    }
+
+                }
+            }
+        }
+
+        int row_temp = 0;
+        int col_temp = 0;
+        String together = "";
+
+        Log.d("Bishop Possibilities", "Bishop Possibilities");
+        for(int i = 0; i < rows.size(); i++){
+
+            row_temp = rows.get(i);
+            col_temp = cols.get(i);
+            together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
+            Log.d("Bishop poss location: ", together);
+        }
 
     }
 }

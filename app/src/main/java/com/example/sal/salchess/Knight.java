@@ -127,7 +127,7 @@ public class Knight extends Piece{
         ArrayList<Character> white_pieces = new ArrayList<Character>();
 
         white_pieces.add('R');
-        white_pieces.add('H');
+        white_pieces.add('K');
         white_pieces.add('B');
         white_pieces.add('Q');
         white_pieces.add('P');
@@ -219,7 +219,7 @@ public class Knight extends Piece{
             row_temp = rows.get(i);
             col_temp = cols.get(i);
             together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
-            Log.d("King poss location: ", together);
+            Log.d("Knight poss location: ", together);
         }
     }
 }
