@@ -190,18 +190,11 @@ public class Pawn extends Piece {
 
         ArrayList<Character> white_pieces = new ArrayList<Character>();
 
-        white_pieces.add('R');
-        white_pieces.add('H');
-        white_pieces.add('K');
-        white_pieces.add('B');
-        white_pieces.add('P');
 
 
         for(int i = 0; i < 8; i++){
 
             for(int j = 0; j < 8; j++){
-
-                if(!(white_pieces.contains(super.getGrid().getGridArr()[i][j]))){
 
                     if(checkIfValidMove(first_piece, first_piece_row, first_piece_col, super.getGrid().getGridArr()[i][j], i, j)){
 
@@ -210,8 +203,6 @@ public class Pawn extends Piece {
                             rows.add(i);
                         }
                     }
-                }
-
             }
         }
 

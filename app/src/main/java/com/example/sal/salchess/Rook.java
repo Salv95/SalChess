@@ -157,7 +157,7 @@ public class Rook extends Piece {
         int col_temp = 0;
         String together = "";
 
-        Log.d("Possibilities", "Possibilities");
+        Log.d("RookPossibilities", "Rook Possibilities");
         for(int i = 0; i < rows.size(); i++){
 
             row_temp = rows.get(i);

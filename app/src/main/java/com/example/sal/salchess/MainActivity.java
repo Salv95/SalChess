@@ -375,8 +375,10 @@ public class MainActivity extends AppCompatActivity {
 //        Queen wQueen = new Queen("White", grid);
 //        wQueen.getPossiblePositions('Q', whitePiecesLoc.get_rows()[11], whitePiecesLoc.get_columns()[11]);
 
-        Pawn w1Pawn = new Pawn("White", grid);
-        w1Pawn.getPossiblePositions('Q', whitePiecesLoc.get_rows()[0], whitePiecesLoc.get_columns()[0]);
+//        Pawn w1Pawn = new Pawn("White", grid);
+//        w1Pawn.getPossiblePositions('P', whitePiecesLoc.get_rows()[0], whitePiecesLoc.get_columns()[0]);
+
+        //whitePiecesLoc.printCount(grid);
 
 
 

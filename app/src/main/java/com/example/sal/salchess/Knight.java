@@ -126,11 +126,20 @@ public class Knight extends Piece{
 
         ArrayList<Character> white_pieces = new ArrayList<Character>();
 
-        white_pieces.add('R');
-        white_pieces.add('K');
-        white_pieces.add('B');
-        white_pieces.add('Q');
-        white_pieces.add('P');
+        if(super.getColor() == "White"){
+            white_pieces.add('R');
+            white_pieces.add('H');
+            white_pieces.add('K');
+            white_pieces.add('B');
+            white_pieces.add('P');
+        }
+        else{
+            white_pieces.add('r');
+            white_pieces.add('h');
+            white_pieces.add('k');
+            white_pieces.add('b');
+            white_pieces.add('p');
+        }
 
         boolean upper_right = ((first_piece_col + 1) < 8) && ((first_piece_row - 2) >= 0);
         boolean upper_mid_right = ((first_piece_col + 2) < 8) && ((first_piece_row - 1) >= 0);

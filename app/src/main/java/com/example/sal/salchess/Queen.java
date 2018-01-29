@@ -22,8 +22,8 @@ public class Queen extends Piece{
     public boolean checkIfValidMove(char first_piece, int first_piece_row, int first_piece_col, char second_piece, int second_piece_row, int second_piece_col) {
 
 
-        Rook wRookQ = new Rook("White", super.getGrid());
-        Bishop wBishopQ = new Bishop("White", super.getGrid());
+        Rook wRookQ = new Rook(this.getColor(), super.getGrid());
+        Bishop wBishopQ = new Bishop(this.getColor(), super.getGrid());
 
         boolean validMove2;
         boolean validMove3;
@@ -47,20 +47,9 @@ public class Queen extends Piece{
         ArrayList<Integer> cols = new ArrayList<Integer>();
         ArrayList<Integer> rows = new ArrayList<Integer>();
 
-        ArrayList<Character> white_pieces = new ArrayList<Character>();
-
-        white_pieces.add('R');
-        white_pieces.add('H');
-        white_pieces.add('K');
-        white_pieces.add('B');
-        white_pieces.add('P');
-
-
         for(int i = 0; i < 8; i++){
 
             for(int j = 0; j < 8; j++){
-
-                if(!(white_pieces.contains(super.getGrid().getGridArr()[i][j]))){
 
                     if(checkIfValidMove(first_piece, first_piece_row, first_piece_col, super.getGrid().getGridArr()[i][j], i, j)){
 
@@ -69,8 +58,6 @@ public class Queen extends Piece{
                             rows.add(i);
                         }
                     }
-                }
-
             }
         }
 
