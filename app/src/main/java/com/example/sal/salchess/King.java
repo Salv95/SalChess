@@ -104,11 +104,13 @@ public class King extends  Piece{
         return false;
     }
 
-    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
+    public Positions getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
 
 
         ArrayList<Integer> cols = new ArrayList<Integer>();
         ArrayList<Integer> rows = new ArrayList<Integer>();
+
+        Positions possPoss;
 
         ArrayList<Character> white_pieces = new ArrayList<Character>();
 
@@ -217,5 +219,8 @@ public class King extends  Piece{
             Log.d("King poss location: ", together);
         }
 
+        possPoss = new Positions(rows, cols);
+
+        return possPoss;
     }
 }

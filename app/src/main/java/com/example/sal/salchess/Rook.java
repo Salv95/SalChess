@@ -120,15 +120,20 @@ public class Rook extends Piece {
     //need to create function that returns an array with all the possible positions the Rook can land on
 
 
-    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
+    public Positions getPossiblePositions(char original_piece, char first_piece, int first_piece_row, int first_piece_col){
 
 
+        if(first_piece != original_piece){
+            return null;
+        }
 
-        Log.d(String.valueOf(first_piece_row), String.valueOf(first_piece_col));
+        Log.d(String.valueOf(first_piece_row), String.valueOf(first_piece_col));//current position
 
 
         ArrayList<Integer> cols = new ArrayList<Integer>();
         ArrayList<Integer> rows = new ArrayList<Integer>();
+
+        Positions possPos;
 
 
         for(int row = 0; row < 8; row++){
@@ -165,6 +170,14 @@ public class Rook extends Piece {
             together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
             Log.d("Rook poss location: ", together);
         }
+
+        possPos = new Positions(rows, cols);
+
+        MemoryUsed memoryUsed = new MemoryUsed();
+
+        memoryUsed.Memory();
+
+        return  possPos;
 
 
     }

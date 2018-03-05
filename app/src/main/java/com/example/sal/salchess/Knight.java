@@ -20,11 +20,6 @@ public class Knight extends Piece{
     public boolean checkIfValidMove(char first_piece, int first_piece_row, int first_piece_col, char second_piece, int second_piece_row, int second_piece_col) {
 
 
-
-        Grid grid = super.getGrid();
-
-        char [][] temp_grid = grid.getGridArr();
-
         if(this.getColor() == "White") {
             if (second_piece == 'R') {
                 return false;
@@ -119,10 +114,12 @@ public class Knight extends Piece{
         return false;
     }
 
-    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
+    public Positions getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
 
         ArrayList<Integer> cols = new ArrayList<Integer>();
         ArrayList<Integer> rows = new ArrayList<Integer>();
+
+        Positions possPos;
 
         ArrayList<Character> white_pieces = new ArrayList<Character>();
 
@@ -230,5 +227,9 @@ public class Knight extends Piece{
             together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
             Log.d("Knight poss location: ", together);
         }
+
+        possPos = new Positions(rows, cols);
+
+        return possPos;
     }
 }

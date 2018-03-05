@@ -182,11 +182,13 @@ public class Pawn extends Piece {
         return false;
     }
 
-    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){//need to make this function not be O(2)
+    public Positions getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){//need to make this function not be O(2)
 
 
         ArrayList<Integer> cols = new ArrayList<Integer>();
         ArrayList<Integer> rows = new ArrayList<Integer>();
+
+        Positions possPos;
 
         ArrayList<Character> white_pieces = new ArrayList<Character>();
 
@@ -219,6 +221,10 @@ public class Pawn extends Piece {
             together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
             Log.d("Pawn poss location: ", together);
         }
+
+        possPos = new Positions(rows, cols);
+
+        return  possPos;
 
     }
 

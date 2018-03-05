@@ -204,8 +204,10 @@ public class Bishop extends Piece{
 
     }
 
-    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
+    public Positions getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){
 
+
+        Positions possPos;
 
         ArrayList<Integer> cols = new ArrayList<Integer>();
         ArrayList<Integer> rows = new ArrayList<Integer>();
@@ -237,6 +239,12 @@ public class Bishop extends Piece{
             together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
             Log.d("Bishop poss location: ", together);
         }
+
+        possPos = new Positions(rows, cols);
+
+        return possPos;
+
+
 
     }
 }

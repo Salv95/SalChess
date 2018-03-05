@@ -103,14 +103,28 @@ public class WhitePiecesLocation {
     }
 
 
-    int[] get_rows(){
+    int[] get_rows(Grid grid){
 
+        updateCount(grid);
         return row;
     }
 
-    int[] get_columns(){
+    int[] get_columns(Grid grid){
 
+        updateCount(grid);
         return col;
+    }
+
+    int[] getCount(Grid grid){
+
+        updateCount(grid);
+        return count;
+    }
+
+    char[] getPiece(Grid grid){
+
+        updateCount(grid);
+        return piece;
     }
 
 
@@ -130,7 +144,7 @@ public class WhitePiecesLocation {
         }
     }
 
-    public void upDateLocation(int first_piece_row, int first_piece_col, int second_piece_row, int second_piece_col){
+    public void upDateLocation(int first_piece_row, int first_piece_col, int second_piece_row, int second_piece_col, Grid grid){
 
 
         for(int i = 0; i < 16; i++){
@@ -139,6 +153,7 @@ public class WhitePiecesLocation {
 
                 row[i] = second_piece_row;
                 col[i] = second_piece_col;
+                piece[i] = grid.getGridArr()[row[i]][col[i]];
             }
         }
 

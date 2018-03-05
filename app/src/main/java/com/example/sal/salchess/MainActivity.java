@@ -1,5 +1,6 @@
 package com.example.sal.salchess;
 
+import android.app.ActivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
 //    ArrayList<ImageView> views_clicked = new ArrayList<ImageView>();
 
     WhitePiecesLocation whitePiecesLoc = new WhitePiecesLocation();
+    BlackPiecesLocation blackPiecesLoc = new BlackPiecesLocation();
+
+    PositionEvaluation positionEval;
 
     public void gameLogic(View view){
 
@@ -166,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 validMove = wRook.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
                 //if valid move the chang the grid and the view
                 if(validMove){
-                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col, grid);
                     upDateGridAndViewWhite();
                 }
                 break;
@@ -175,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                 validMove = wKnight.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove){
-                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col, grid);
                     upDateGridAndViewWhite();
                 }
                 break;
@@ -185,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 validMove = wPawn.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove){
-                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col, grid);
                     upDateGridAndViewWhite();
                 }
                 break;
@@ -195,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 validMove = wQueen.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove){
-                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col, grid);
                     upDateGridAndViewWhite();
                 }
                 break;
@@ -204,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 validMove = wBishop.checkIfValidMove(first_piece,first_piece_row,first_piece_col, second_piece, second_piece_row, second_piece_col);
 
                 if(validMove){
-                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col, grid);
                     upDateGridAndViewWhite();
 
                 }
@@ -216,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if(validMove){
-                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col);
+                    whitePiecesLoc.upDateLocation(first_piece_row, first_piece_col, second_piece_row, second_piece_col, grid);
                     upDateGridAndViewWhite();
                 }
                 break;
@@ -279,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
                 Bishop bishop = new Bishop("Black", grid);
                 boolean bishop_valid_move = bishop.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
                 if(bishop_valid_move) {
+                    blackPiecesLoc.upDateLocation(vals1.get(0),vals1.get(1), vals2.get(0), vals2.get(1), grid);
                     upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
                     pass = false;
                 }
@@ -291,6 +296,7 @@ public class MainActivity extends AppCompatActivity {
                 King king = new King("Black", grid);
                 boolean king_valid_move = king.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
                 if(king_valid_move) {
+                    blackPiecesLoc.upDateLocation(vals1.get(0),vals1.get(1), vals2.get(0), vals2.get(1), grid);
                     upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
                     pass = false;
                 }
@@ -303,6 +309,7 @@ public class MainActivity extends AppCompatActivity {
                 Knight knight = new Knight("Black", grid);
                 boolean knight_valid_move = knight.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
                 if(knight_valid_move) {
+                    blackPiecesLoc.upDateLocation(vals1.get(0),vals1.get(1), vals2.get(0), vals2.get(1), grid);
                     upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
                     pass = false;
                 }
@@ -315,6 +322,7 @@ public class MainActivity extends AppCompatActivity {
                 Rook rook = new Rook("Black", grid);
                 boolean rook_valid_move = rook.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
                 if(rook_valid_move) {
+                    blackPiecesLoc.upDateLocation(vals1.get(0),vals1.get(1), vals2.get(0), vals2.get(1), grid);
                     upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
                     pass = false;
                 }
@@ -327,6 +335,7 @@ public class MainActivity extends AppCompatActivity {
                 Pawn pawn = new Pawn("Black", grid);
                 boolean pawn_valid_move = pawn.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
                 if(pawn_valid_move) {
+                    blackPiecesLoc.upDateLocation(vals1.get(0),vals1.get(1), vals2.get(0), vals2.get(1), grid);
                     upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
                     pass = false;
                 }
@@ -336,12 +345,13 @@ public class MainActivity extends AppCompatActivity {
             }
             else if(piece == 'q'){
                 Log.d("queen","queen selected");
-                Rook rookQ = new Rook("Black", grid);
-                Bishop bishopQ = new Bishop("Black", grid);
-                boolean bishop_valid_moveQ = bishopQ.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
-                boolean rook_valid_moveQ = rookQ.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
+                Queen queen = new Queen("Black", grid);
 
-                if(rook_valid_moveQ || bishop_valid_moveQ) {
+                boolean queen_valid_move = queen.checkIfValidMove(piece,vals1.get(0),vals1.get(1),piece2, vals2.get(0),vals2.get(1));
+
+
+                if(queen_valid_move) {
+                    blackPiecesLoc.upDateLocation(vals1.get(0),vals1.get(1), vals2.get(0), vals2.get(1), grid);
                     upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
                     pass = false;
                 }
@@ -350,35 +360,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             else{
+                blackPiecesLoc.upDateLocation(vals1.get(0),vals1.get(1), vals2.get(0), vals2.get(1), grid);
                 upDateGridAndViewBlack(piece,vals1.get(0),vals1.get(1),vals2.get(0),vals2.get(1),image1, image2);
                 pass = false;
             }
         }while(pass == true);
 
 
-//        Rook wlRook = new Rook("White", grid);
-//        wlRook.getPossiblePositions('R',whitePiecesLoc.get_rows()[8],whitePiecesLoc.get_columns()[8]);//to get left Rook
+        positionEval = new PositionEvaluation(grid, whitePiecesLoc, blackPiecesLoc);
 
-//
-//        Rook wrRook = new Rook("White", grid);
-//        wrRook.getPossiblePositions('R',whitePiecesLoc.get_rows()[15],whitePiecesLoc.get_columns()[15]);//to get right Rook
+        Positions badPositions = positionEval.calculateBestMove();
 
-//        King wKing = new King("White", grid);
-//        wKing.getPossiblePositions('K',whitePiecesLoc.get_rows()[12],whitePiecesLoc.get_columns()[12]);//to get king
 
-//        Knight wlKnight = new Knight("White", grid);
-//        wlKnight.getPossiblePositions('H', whitePiecesLoc.get_rows()[9], whitePiecesLoc.get_columns()[9]);// to get left Knight
 
-//        Bishop wlBishop = new Bishop("White", grid);
-//        wlBishop.getPossiblePositions('B', whitePiecesLoc.get_rows()[10], whitePiecesLoc.get_columns()[10]);
-//
-//        Queen wQueen = new Queen("White", grid);
-//        wQueen.getPossiblePositions('Q', whitePiecesLoc.get_rows()[11], whitePiecesLoc.get_columns()[11]);
+        Log.d("Testttttttttttt1","Testttttttttttt1");
 
-//        Pawn w1Pawn = new Pawn("White", grid);
-//        w1Pawn.getPossiblePositions('P', whitePiecesLoc.get_rows()[0], whitePiecesLoc.get_columns()[0]);
+        Log.d("Positions where L&R ", "rooks Intersect");
 
-        //whitePiecesLoc.printCount(grid);
+        for(int i = 0; i < badPositions.getRows().size(); i++){
+
+            Log.d("Rows: ", String.valueOf(badPositions.getRows().get(i)));
+            Log.d("Cols: ", String.valueOf(badPositions.getColumns().get(i)));
+        }
+        Log.d("Testttttttttttt1","Testttttttttttt1");
+        whitePiecesLoc.printCount(grid);
 
 
 
@@ -445,7 +450,7 @@ public class MainActivity extends AppCompatActivity {
     public void upDateGridAndViewWhite(){
 
 
-        //Switch tages between Image Views
+        //Switch tags between Image Views
         String temp_tag = (String) first_view.getTag();
         first_view.setTag(null);
         second_view.setTag(temp_tag);
@@ -593,6 +598,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+        Runtime rt = Runtime.getRuntime();
+        long maxMemory = rt.maxMemory();
+        Log.v("onCreate", "maxMemory:" + Long.toString(maxMemory/1000000));
+
+        ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        int memoryClass = am.getMemoryClass();
+        Log.v("onCreate", "memoryClassRecommended:" + Integer.toString(memoryClass));
     }
 }

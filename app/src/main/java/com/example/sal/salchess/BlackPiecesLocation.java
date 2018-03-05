@@ -50,7 +50,7 @@ public class BlackPiecesLocation {
         Log.d("King Count", String.valueOf(count[4]));
     }
 
-    public void updateCount(Grid grid){//problems
+    public void updateCount(Grid grid){
 
         int tempCount[] = {0,0,0,0,0,0};
 
@@ -96,19 +96,35 @@ public class BlackPiecesLocation {
             tempCount[4]++;
         }
 
+        Log.d("bbRook tempCount", String.valueOf(tempCount));
+
         count = tempCount;
 
     }
 
 
-    int[] get_rows(){
+    int[] get_rows(Grid grid){
 
+        updateCount(grid);
         return row;
     }
 
-    int[] get_columns(){
+    int[] get_columns(Grid grid){
 
+        updateCount(grid);
         return col;
+    }
+
+    int[] getCount(Grid grid){
+
+        updateCount(grid);
+        return count;
+    }
+
+    char[] getPiece(Grid grid){
+
+        updateCount(grid);
+        return piece;
     }
 
 
@@ -128,7 +144,7 @@ public class BlackPiecesLocation {
         }
     }
 
-    public void upDateLocation(int first_piece_row, int first_piece_col, int second_piece_row, int second_piece_col){
+    public void upDateLocation(int first_piece_row, int first_piece_col, int second_piece_row, int second_piece_col, Grid grid){
 
 
         for(int i = 0; i < 16; i++){
@@ -137,6 +153,7 @@ public class BlackPiecesLocation {
 
                 row[i] = second_piece_row;
                 col[i] = second_piece_col;
+                piece[i] = grid.getGridArr()[row[i]][col[i]];
             }
         }
 

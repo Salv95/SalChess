@@ -41,11 +41,13 @@ public class Queen extends Piece{
         return false;
     }
 
-    public void getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){//need to make this function not be O(3)
+    public Positions getPossiblePositions(char first_piece, int first_piece_row, int first_piece_col){//need to make this function not be O(3)
 
 
         ArrayList<Integer> cols = new ArrayList<Integer>();
         ArrayList<Integer> rows = new ArrayList<Integer>();
+
+        Positions possPos;
 
         for(int i = 0; i < 8; i++){
 
@@ -74,6 +76,10 @@ public class Queen extends Piece{
             together = "Row: " + Integer.toString(row_temp) + " - " + "Col: " + Integer.toString(col_temp);
             Log.d("Queen poss location: ", together);
         }
+
+        possPos = new Positions(rows, cols);
+
+        return possPos;
 
     }
 }
